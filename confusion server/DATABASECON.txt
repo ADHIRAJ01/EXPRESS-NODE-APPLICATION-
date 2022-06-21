@@ -1,0 +1,142 @@
+HOW TO CREATE DATABASE CONNECTION AN INSERT ON OUR DATABASE FROM HTML PAGES 
+
+SOURCE LINK ----
+https://codingstatus.com/how-to-insert-data-into-mongodb-using-mongoose-and-node-js/
+
+1) INSTALL EXPRESS APPLIICATION AND DO 
+myapp/
+  |__controllers/
+  |     |__user-controller.js
+  |__models/
+  |     |__user-model.js
+  |__routes/
+  |     |__user-route.js
+  |__views/         
+  |     |__user-form.ejs
+  |__database.js
+================================================================
+2) Connect Node.js App to MongoDB Database
+- IN database.js file 
+------
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/nodeapp', {useNewUrlParser: true});
+var conn = mongoose.connection;
+conn.on('connected', function() {
+    console.log('database is connected successfully');
+});
+conn.on('disconnected',function(){
+    console.log('database is disconnected successfully');
+})
+conn.on('error', console.error.bind(console, 'connection error:'));
+module.exports = conn;
+==================================================================
+3 CREATE MODEL TO INSERT DATA 
+
+* Include mongoose module using require('mongoose')
+* Include MongoDB database using require('../database')
+* Create a schema userSchema with the collection columns’ name like first_name, email_address, city & country.
+* Pass the collection name users & schema userSchema to the mongoose module and assign it to a variable userTable
+* After that, Write a mongoose query withing module.exports to save data into the MongoDB Datable
+--------------
+IN insert-model.js file 
+-----------------
+var mongoose=require('mongoose');
+var db = require('../database');
+
+// create an schema
+var userSchema = new mongoose.Schema({
+            full_name: String,
+            email_address:String,
+            city:String,
+            country:String
+        });
+
+userTable=mongoose.model('users',userSchema);
+        
+module.exports={
+     createData:function(inputData, callback){
+                  
+        userData= new userTable(inputData);
+        userData.save(function(err, data){
+          if (err) throw err;
+           return callback(data);
+        });
+     }
+}
+================================================================
+4) USER-FORM.ejs file
+CREATING FORM WITH action='/create' and method="POST"
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<!--====form section start====-->
+<div class="user-detail">
+   
+    <hr>
+    <form action="/create" method="POST">
+          <label>Full Name</label>
+          <input type="text" placeholder="Enter Full Name" name="full_name" required >
+          <label>Email Address</label>
+          <input type="email" placeholder="Enter Email Address" name="email_address" required>
+          <label>City</label>
+          <input type="city" placeholder="Enter Full City" name="city" required>
+          <label>Country</label>
+          <input type="text" placeholder="Enter Full Country" name="country" required>
+          <button type="submit">Submit</button>
+    </form>
+        </div>
+</div>
+<!--====form section start====-->
+</body>
+</html>
+
+================================================================
+5) CREATING CONTROLLER TO INSERT DATA 
+* Include user module using require('../models/insert-model')
+* Create a method userForm to display the form in the browser
+* Also, create another method createData to save data on the form submit
+
+IN insert-controller.js file
+
+var insertModel= require('../models/insert-model');
+module.exports={
+    userForm:function(req,res){
+         res.render('user-form')
+    },
+    createData:function(req, res){
+         var inputData= req.body;
+         insertModel.createData(inputData, function(data){
+            res.render('user-form')
+            console.log(" record was created");
+         });
+    }
+}
+================================================================
+6) CREATE ROUTER TO INSERT DATA
+
+* Create a route /user-form with the GET method to display the user form in the browser.
+* Also, create another route /create with the POST method to insert data
+* At last, export the router
+
+IN insert-route.js file
+----------------
+var express = require('express');
+var router = express.Router();
+var insertController= require('../controllers/insert-controller');
+router.get('/user-form', insertController.userForm);
+router.post('/create', insertController.createData);
+module.exports = router;
+================================================================
+7) INSERT ROUTER IN app.js file
+
+IN app.js file
+
+var insertRouter = require('../routes/insert-router');
+app.use('/',insertRouter);
+================================================================
+8) RUN nodejs app to insert data 
+
+start node server and then search the localhost

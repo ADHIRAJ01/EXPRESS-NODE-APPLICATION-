@@ -1,0 +1,14 @@
+TO CREATE THE EXPRESS APPLICATION (npm install -g express-generator)
+1 express <filename>
+2 npm init 
+3 npm start 
+4 .git_ignore > node_modules
+
+REST API implementation 
+
+var dishRouter = require('./<path>');
+var promoRouter = require('./<path>');
+...
+
+app.use('/dishes',dishRouter);
+app.use('/promotionss',promoRouter);
