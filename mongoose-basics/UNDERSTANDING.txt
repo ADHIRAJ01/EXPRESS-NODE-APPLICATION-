@@ -1,0 +1,10 @@
+/*
+MONGOOSE IS USED AS A CONNECTION PART AND mongod(necesary) IS OUR REAL DATABASE IN UR TERMINAL WHICH WE START 
+for building connection we can use , mongo , python , mongoose(in nodejs) , mongodb compass
+
+---FLOW-----
+nodejs - mongoose - mongodb 
+
+1) np init
+2) npm i mongoose
+3) terminal - run -> node index.js
