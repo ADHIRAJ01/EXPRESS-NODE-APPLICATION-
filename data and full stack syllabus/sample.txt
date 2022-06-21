@@ -1,0 +1,2 @@
+db file containing data in json format
+and full stack syllabus
