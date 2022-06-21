@@ -1,0 +1,30 @@
+by using express.static(__dirname+'/public') it serve index file
+
+REST -> web standards, exchange of data using xml or json + URL(unique resource locator) + URI(uniform resource indicator)
+HTTP -> GET AND POST , HTTP PUT AND HTTP DELETE 
+
+EXPRESS APPLICATIOM ROUTES:
+app.all('/dishes',function(req,res,next){...});
+app.get('/dishes',function(req,res,next){...});
+app.post('/dishes',function(req,res,next){...});
+app.delete('/dishes',function(req,res,next){...});
+
+ROUTES WITH PARAMETERS
+app.get(('/dishes/:dishId',function(req,res,next){
+    res.end('will send details',req.params.dishId+'to you');
+}));
+
+BODYPARSER
+(npm install body-parser --save)
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());     -> parse JSON in the body
+
+using router , we can send different routes to same route file e.g. dishrouter file we can send all method from index like ('/dishes) for one (/dises/:dishId) , all on same file
+
+dishrouter IS USED FOR ROUTING all REST services (all,get,delete,put,post)
+
+
+*****************************************************************************************************************************************
+
+EXPRESS GENERATOR -> used for generating scafold for express application
+    (npm install express-generator -g)
