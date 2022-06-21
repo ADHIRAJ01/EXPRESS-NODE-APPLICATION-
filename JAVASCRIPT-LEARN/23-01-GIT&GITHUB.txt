@@ -1,0 +1,42 @@
+GIT AND GITHUB
+
+STORING , TRACKING CHANGES EVERY TIME FOR PROJECTS 
+COLLABORATE TEAM ON SINGLE PROJECT
+
+FIRST TIME USER 
+git config --global user.name "ANURAG"
+git config --global.email "www.pas@gmail.com"
+
+git: VCS (version cntrol system)
+
+git init    -> initialization 
+git add .   ->add all files to git repository or git add <filename>     ->add particular files
+git commit -m "MESSAGE HERE"        ->save all files after adding
+git status -> what is the status of project
+git log or git log --oneline
+git remote add origin <url>     -> build connection btwn github folder and local computer folder
+git push -u origin master         -> push files in local to github folder 
+
+
+github:  
+ADDING FILES TO CLOUD 
+
+MAKING CHANGES IN LOCAL FOLDERS 
+git add . 
+git commit -m "MESSAGE"
+git push -u origin master
+
+COPY ONE PROJECT FROM GITHUB TO LOCAL COMPUTER 
+git clone <url>
+
+HOSTING
+setting -> pages -> switch to master -> publish
+LINK CREATED AFTER SOMETIME IT WILL HOST ONE WEBSITE USING LINK 
+
+
+HAVING PROBLEM WITH SSH KEYS 
+GO TO HTTP SERVER LINK COPY LINK 
+git remote set-url origin <url-link> 
+git remote get-url origin 
+git push -u origin master 
+

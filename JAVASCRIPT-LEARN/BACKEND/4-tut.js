@@ -1,0 +1,11 @@
+/* STREAMS 
+
+writeable
+
+readable
+
+duplex
+
+transform
+
+*/
