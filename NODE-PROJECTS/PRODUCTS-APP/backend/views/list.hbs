@@ -1,0 +1,28 @@
+<h1>
+    LIST PAGE 
+</h1>
+<table>
+    <thead>
+       <tr>
+           <th>ONE</th>
+           <th>TWO</th>
+           <th>THREE</th>
+       </tr>
+    </thead>
+    {{#each provider}}
+    <tbody>
+        <tr>
+            <td>{{name}}</td>
+            <td>{{id}}</td>
+            <td>{{category}}</td>
+            <td>{{position}}</td>
+            <td>{{company.date}}</td>
+            <td>
+                <button href="/details/{{id}}">DETAILS</button>
+                <button>EDIT</button>
+                <button>DELETE</button>
+            </td>
+        </tr>
+    </tbody>
+    {{/each}}
+</table>
