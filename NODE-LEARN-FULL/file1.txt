@@ -1,0 +1,1 @@
+WRITTEN TO THE FILE, IN writeFile first takes file name , second takes data , third callback function

@@ -1,0 +1,15 @@
+ECMAScript -> standard format to package JS package for reuse
+
+***********IN FILE 1 WE EXPORT (one function or more )****************
+function addTwo(num) {
+    return num+10;
+}
+export { addTwo };
+
+****************IN OTHER FILE WE IMPORT FUNCTION IN ECMAScript way*********************
+import { addTwo } from './folder/filename';
+
+
+.mjs is used for ECMAScript files , in such file require('./file) doesn't works.
+also for ECMAScript we need to put in package.json file
+"type": "module"
